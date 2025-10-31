@@ -1,0 +1,17 @@
+instalar redux-toolkit
+pnpm install @reduxjs/toolkit react-redux -E
+
+-creamos una carpeta 
+lo primero que necesitamos es store, es donde se guardan las cosas 
+estado
+acciones
+reducers
+
+adicionamos el configure store
+import {configureStore} from "@reduxjs/toolkit"
+
+nuestra APP debemos envolverla con un provaider, para poder darle a entender a mi app que estamos usando redux, se realiza en el main 
+
+Provider nnos permite leer la store desde cualquier componente de la app y nos permite mandar acciones a esa store, para que genere nuevos estados
+
+store(donde guardamos todo) ese store va a estar dividido en diferentes secciones(slice)

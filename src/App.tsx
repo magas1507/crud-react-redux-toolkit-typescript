@@ -1,10 +1,12 @@
 import './App.css'
+import './index.css';
+import { ListOfUsers } from './components/ListOfUsers'
 
 function App() {
 
   return (
     <>
-      <h1>proyecto con redux</h1>
+      <ListOfUsers />
     </>
   )
 }
