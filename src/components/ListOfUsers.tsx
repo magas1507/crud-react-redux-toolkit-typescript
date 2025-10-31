@@ -10,9 +10,12 @@ import {
   TableRow,
   Title,
 } from '@tremor/react'
+//importamos la store
+import { useSelector } from "react-redux"
 
 
 export function ListOfUsers() {
+  const users = useSelector((state) => state.users)
   return (
     <Card>
       <Title>Usuarios
