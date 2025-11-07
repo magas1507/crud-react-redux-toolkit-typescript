@@ -15,3 +15,81 @@ nuestra APP debemos envolverla con un provaider, para poder darle a entender a m
 Provider nnos permite leer la store desde cualquier componente de la app y nos permite mandar acciones a esa store, para que genere nuevos estados
 
 store(donde guardamos todo) ese store va a estar dividido en diferentes secciones(slice)
+
+***como tipar un reducer
+exportamos un tipo que sea del estadp de la raiz y le dices que el tipo del estado es ReturnType<de donde lo vas a sacar>
+
+una buena practica es crear un customhook para ese store
+*useDispatch: Sirve para enviar (dispatch) acciones al store.Las acciones son objetos que dicen qué quieres hacer (por ejemplo, “agregar usuario”, “cambiar tema”, etc.).
+El dispatch las envía al reducer, que es quien actualiza el estado según la acción.
+
+*useSelector: puedes acceder a una parte de ese estado dentro de tu componente.
+
+Otra forma de llamaar el dispatch mas efectiva y no generes una dependencia entre componentes es cuando importes por ejempolo 
+forman común
+componente
+
+  ListOfUsers.tsx
+
+  import { useAppSelector, useAppDispatch } from '../hooks/store';
+
+  const users = useAppSelector((state) => state.users)
+
+  //recuperamos la acción con el dispatch
+  //esta no es la manera más adecuada, lo mejor es separarlo, porque tienes que estar llamandolo en todos 
+  const dispatch = useDispatch()
+
+  // const handleRemoveUser = (id: User) => {
+  //   dispatch(deleteUserByID(id))
+  // }
+
+  creamos un custom hook useUserActions.ts
+
+  y lo importamos a donde necesitamos
+   
+****middleware : es como capturar un momento en concreto 
+
+   O que é um middleware?
+
+Um middleware é uma função intermediária que fica entre o momento em que uma action é despachada (dispatch) e o momento em que ela chega ao reducer.
+
+👉 Ele serve para interceptar, modificar ou reagir às actions antes que alterem o estado global.
+
+🔁 Fluxo com middleware:
+Componente → dispatch(action) → middleware(s) → reducer → novo estado → UI atualizada
+
+🎯 Para que serve um middleware
+
+Fazer requisições assíncronas (ex: chamadas de API).
+
+Fazer logs (ver quais actions foram disparadas).
+
+Fazer validações, monitoramento, ou tratamento de erros.
+
+Interagir com armazenamento local (localStorage, cookies, etc.).
+
+Executar side effects sem alterar o reducer.
+
+🧩 Middlewares no Redux Toolkit
+
+O RTK já vem com middlewares padrão configurados automaticamente, como:
+
+redux-thunk → permite despachar funções assíncronas (por exemplo, usando createAsyncThunk);
+
+serializableCheck → verifica se o estado e as actions são serializáveis;
+
+immutableCheck → garante que o estado não está sendo mutado diretamente.
+
+Quando você cria a store com configureStore(), eles já estão lá:
+
+import { configureStore } from '@reduxjs/toolkit'
+import userReducer from './userSlice'
+
+export const store = configureStore({
+  reducer: {
+    user: userReducer
+  }
+})
+
+
+👆 Isso já inclui o thunk e outros middlewares automaticamente — você não precisa adicionar manualmente.

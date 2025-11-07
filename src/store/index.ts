@@ -2,6 +2,7 @@ import {configureStore} from "@reduxjs/toolkit"
 
 //importamos el reducer
 import usersReducer  from "./users/slice";
+import App from '../App';
 
 //de esta manera ya tenemos nuestra store preparada para trabajar con los usuarios 
 export const store = configureStore({
@@ -10,3 +11,11 @@ export const store = configureStore({
     users: usersReducer
   },
 })
+
+//Estamos diciendo que de de la función store.getState de ese type el tipo que devuelve sea RootState
+//ReturnType: es el tipo que devuelve la función
+// tienes que decirle de que store que esta usando tiene que recuperar el tipo
+export type RootState = ReturnType<typeof store.getState>
+
+// hacemos lo mismo con el dispatch
+export type AppDispatch = typeof store.dispatch
