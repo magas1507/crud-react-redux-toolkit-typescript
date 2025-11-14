@@ -1,23 +1,8 @@
 import { createSlice, type PayloadAction} from '@reduxjs/toolkit'
 //podemos tener un estado global que sea un array
 //usuario que guardamos en el estado
-
-// por si en algun momento le cambiamos el tipo
-export type UserId= string
-
-export interface User{
-  name: string;
-  email: string;
-  github:string
-}
-
-export interface UserWithId extends User{
-  id: UserId;
-
-}
-
-const initialState: UserWithId[]=[
-  {
+const DEFAULT_STATE = [
+	{
 		id: "1",
 		name: "Yazman Rodriguez",
 		email: "yazmanito@gmail.com",
@@ -36,6 +21,31 @@ const initialState: UserWithId[]=[
 		github: "midudev",
 	},
 ]
+// por si en algun momento le cambiamos el tipo
+export type UserId= string
+
+export interface User{
+  name: string;
+  email: string;
+  github:string
+}
+
+export interface UserWithId extends User{
+  id: UserId;
+
+}
+
+// let initialState: UserWithId[]= DEFAULT_STATE;
+// 	const persitedState = localStorage.getItem("_redux_state_")
+// 	if (persitedState) {
+// 		initialState = JSON.parse(persitedState).users
+// 	} 
+ 
+const initialState: UserWithId[] = (()=>{
+	const persitedState = localStorage.getItem("_redux_state_")
+	return persitedState ? JSON.parse(persitedState).users : DEFAULT_STATE
+})()
+
 export const usersSlice = createSlice({
   name: 'users',
   initialState,
@@ -50,8 +60,9 @@ export const usersSlice = createSlice({
 		deleteUserByID: (state, action : PayloadAction<UserId>)=>{
 			const id = action.payload
 			return state.filter((user) => user.id !== id )
-		}
-	}
+		},
+	}, 
+
 })
 
 export default usersSlice.reducer;

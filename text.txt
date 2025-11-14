@@ -17,7 +17,7 @@ Provider nnos permite leer la store desde cualquier componente de la app y nos p
 store(donde guardamos todo) ese store va a estar dividido en diferentes secciones(slice)
 
 ***como tipar un reducer
-exportamos un tipo que sea del estadp de la raiz y le dices que el tipo del estado es ReturnType<de donde lo vas a sacar>
+exportamos un tipo que sea del estado de la raiz y le dices que el tipo del estado es ReturnType<de donde lo vas a sacar>
 
 una buena practica es crear un customhook para ese store
 *useDispatch: Sirve para enviar (dispatch) acciones al store.Las acciones son objetos que dicen qué quieres hacer (por ejemplo, “agregar usuario”, “cambiar tema”, etc.).
