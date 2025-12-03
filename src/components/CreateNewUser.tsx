@@ -1,8 +1,10 @@
-import { Button, Card, TextInput, Title } from "@tremor/react";
+import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { Badge } from "@/components/ui/badge"
 import { useState } from "react";
 import { useUserActions } from '../hooks/useUserActions'
 import type React from "react";
-import { Badge } from "./Badge";
 
 
 export function CreateNewUser() {
@@ -33,38 +35,54 @@ export function CreateNewUser() {
 
 
   return (
-    <Card style={{ marginTop: '16px' }}>
-      <Title> Create new user</Title>
+    <Card className="mt-4">
+      <CardHeader>
+        <CardTitle>Create new user</CardTitle>
+      </CardHeader>
 
-      <form onSubmit={handleSubmit}>
-        <TextInput
-          name="name"
-          placeholder="Name"
+      <CardContent>
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <Input
+            name="name"
+            placeholder="Name"
+            className="mb-3"
+            required
+          />
 
-        />
-        <TextInput
-          name="email"
-          placeholder="Email"
+          <Input
+            name="email"
+            type="email"
+            placeholder="Email"
+            className="mb-3"
+            required
+          />
 
-        />
-        <TextInput
-          name="github"
-          placeholder="User github"
+          <Input
+            name="github"
+            placeholder="User github"
+            className="mb-6"
+            required
+          />
 
-        />
-        <div>
-          <Button
-            type="submit"
-            style={{ marginTop: 16 }}
-          >
-            crear usuario
-          </Button>
-          <span>
-            {result === 'ok' && <Badge color="green"> guardado correctamente </Badge>}
-            {result === 'ko' && <Badge color="red"> error en los campos </Badge>}
-          </span>
-        </div>
-      </form>
+          <div className="flex items-center gap-4">
+            <Button type="submit">
+              crear usuario
+            </Button>
+
+            {result === "ok" && (
+              <Badge className="bg-green-600 text-white">
+                guardado correctamente
+              </Badge>
+            )}
+
+            {result === "ko" && (
+              <Badge className="bg-red-600 text-white">
+                error en los campos
+              </Badge>
+            )}
+          </div>
+        </form>
+      </CardContent>
     </Card>
   )
 }

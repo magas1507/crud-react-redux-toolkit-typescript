@@ -55,7 +55,7 @@ export const usersSlice = createSlice({
 
 		//react toolkit tiene payloadaction y se lo pasamos como generico, especificandole el tipo del payload
 		// lo mejor cuando tenemos un reducers es exportar la accion, esta es una forma que tiene react toolkit sin tener que importar el string a la hora de decirle que accion tiene que hacer 
-		//primer reducerimport { usersSlice } from './slice';
+		//primer reducerimport { usersSlice, UserWithId } from './slice';
 		addNewUser:(state, action: PayloadAction<User>)=>{
 			const id = crypto.randomUUID()
 			//creamos otro esta a partir del anterior 
@@ -69,7 +69,15 @@ export const usersSlice = createSlice({
 		rollbackUser:(state, action: PayloadAction<UserWithId>)=>{
 			const isUserAlreadyDefine = state.some(user=> user.id === action.payload.id)
 			if(!isUserAlreadyDefine){
-				return[...state,action.payload]
+				state.push(action.payload)
+			}
+		},
+		updateUser:(state, action:PayloadAction<UserWithId>)=>{
+			const updateUser = action.payload
+			const userIndex = state.findIndex((user)=> user.id ===updateUser
+		.id)
+			if (userIndex !==-1) {
+				state[userIndex]= updateUser
 			}
 		}
 
@@ -79,4 +87,4 @@ export const usersSlice = createSlice({
 
 export default usersSlice.reducer;
 // exportamos la accióon 
-export const {addNewUser,  deleteUserById, rollbackUser } = usersSlice.actions
+export const {addNewUser,  deleteUserById, rollbackUser, updateUser } = usersSlice.actions
