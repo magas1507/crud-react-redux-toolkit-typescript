@@ -72,7 +72,7 @@ export const usersSlice = createSlice({
 				state.push(action.payload)
 			}
 		},
-		updateUser:(state, action:PayloadAction<UserWithId>)=>{
+		editUser:(state, action:PayloadAction<UserWithId>)=>{
 			const updateUser = action.payload
 			const userIndex = state.findIndex((user)=> user.id === updateUser
 		.id)
@@ -87,4 +87,4 @@ export const usersSlice = createSlice({
 
 export default usersSlice.reducer;
 // exportamos la accióon 
-export const {addNewUser,  deleteUserById, rollbackUser, updateUser } = usersSlice.actions
+export const {addNewUser,  deleteUserById, rollbackUser, editUser } = usersSlice.actions

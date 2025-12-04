@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import { Button } from "@/components/ui/button"
 import {
   Dialog,
@@ -9,9 +8,9 @@ import {
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import { fromTheme } from "tailwind-merge";
 import { UserWithId } from "@/store/users/slice";
 import { useUserActions } from "@/hooks/useUserActions";
+import { useState } from "react"
 
 interface Props {
   user: UserWithId
