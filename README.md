@@ -18,3 +18,6 @@ Um aplicativo CRUD desenvolvido com **React**, **Redux Toolkit**, **TypeScript**
 - shadcn/ui
 - pnpm 10.x
 - Vite
+
+## Projeto final no vercel 
+- https://crud-react-redux-toolkit-typescript-indol.vercel.app/
