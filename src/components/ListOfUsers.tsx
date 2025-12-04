@@ -14,6 +14,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { useAppSelector } from '../hooks/store'
 import { useUserActions } from '../hooks/useUserActions';
 import { EditUser } from "./EditUser"
+import type { UserWithId } from "../store/users/slice"
 
 
 
