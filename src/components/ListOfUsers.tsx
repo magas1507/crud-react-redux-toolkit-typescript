@@ -1,6 +1,5 @@
 import { useState } from "react"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { Button } from "@/components/ui/button"
 import {
   Table,
   TableBody,
@@ -11,7 +10,6 @@ import {
 } from "@/components/ui/table"
 import { Badge } from "@/components/ui/badge"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Pencil, Trash2 } from "lucide-react"
 //importamos la store
 import { useAppSelector } from '../hooks/store'
 import { useUserActions } from '../hooks/useUserActions';
