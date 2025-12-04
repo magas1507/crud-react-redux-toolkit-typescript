@@ -4,11 +4,10 @@ import path from 'path'
 
 // https://vite.dev/config/
 export default defineConfig({
-  plugins: [react() /* , tailwindcss() se usar v4 */],
-  base: '/',
+  plugins: [react()],
   resolve: {
     alias: {
-      "@": path.resolve(__dirname, "./src"),  // ← Adicione isso
+      "@": path.resolve(__dirname, "./src"),
     },
   },
 })

@@ -1,7 +1,7 @@
 import {configureStore, type Middleware} from "@reduxjs/toolkit"
 
 //importamos el reducer
-import usersReducer, {rollbackUser}  from "./users/slice";
+import usersReducer, {rollbackUser, deleteUserById}  from "./users/slice";
 import { toast } from "sonner";
 
 
@@ -14,38 +14,35 @@ const persistanceLocalStorageMiddleware: Middleware = (store)=>(next)=>(action)=
   localStorage.setItem("__redux__state__", JSON.stringify(store.getState()));
   return result;
 }
-const syncWithDataBase: Middleware =(store) => (next) => (action)  => {
+const syncWithDataBase: Middleware =(store) => (next) => (action:unknown)  => {
   //fase 1
   const previousState = store.getState()
 
   //fase 2
    next(action)
   
-   if(action.type === 'users/deleteUserById'){//<--eliminando el usuario 
+   if(deleteUserById.match(action)){//<--eliminando el usuario 
 
     const userIdToRemove = action.payload
 		const userToRemove = previousState.users.find(user => user.id === userIdToRemove)
 
     fetch(`https://jsonplaceholder.typicode.com/users/${userIdToRemove}`, {
-      method:'Delete'
+      method:'DELETE'
     })
     .then(res => {
-  if (res.ok) {
-    toast.success(`Usuário eliminado com sucesso!`)
-    
-  }
-})
+      if (res.ok) {
+        toast.success(`Usuário eliminado com sucesso!`)
+        
+      }
+    })
     .catch(err => {
       toast.error(`Error deleting user ${userIdToRemove}`)
       if (userToRemove) {
         store.dispatch(rollbackUser(userToRemove))
-        console.log('Rollback feito!')
+        console.error(err)
       }
     })
-   }
-
-    console.log(store.getState())
-  
+   }  
 }
 //de esta manera ya tenemos nuestra store preparada para trabajar con los usuarios 
 export const store = configureStore({

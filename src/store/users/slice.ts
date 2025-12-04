@@ -75,7 +75,7 @@ export const usersSlice = createSlice({
 		editUser:(state, action:PayloadAction<UserWithId>)=>{
 			const updateUser = action.payload
 			const userIndex = state.findIndex((user)=> user.id === updateUser
-		.id)
+.id)
 			if (userIndex !==-1) {
 				state[userIndex]= updateUser
 			}

@@ -1,16 +1,16 @@
+import { useState } from "react"
 import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
 import {
   Dialog,
   DialogContent,
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog"
-import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
 import { UserWithId } from "@/store/users/slice";
 import { useUserActions } from "@/hooks/useUserActions";
-import { useState } from "react"
+
 
 interface Props {
   user: UserWithId
@@ -19,7 +19,7 @@ interface Props {
 }
 
 export function EditUser({ user, open, onOpenChange }: Props) {
-  const { editUser } = useUserActions()
+  const { updateUser } = useUserActions()
 
   const [name, setName] = useState(user.name)
   const [email, setEmail] = useState(user.email)
@@ -27,7 +27,7 @@ export function EditUser({ user, open, onOpenChange }: Props) {
 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault()
-    editUser({ id: user.id, name, email, github })
+    updateUser({ id: user.id, name, email, github })
     onOpenChange(false)
   }
 
