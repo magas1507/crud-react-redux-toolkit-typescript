@@ -42,7 +42,7 @@ export interface UserWithId extends User{
 // 	} 
  
 const initialState: UserWithId[] = (()=>{
-	const persitedState = localStorage.getItem("_redux_state_")
+	const persitedState = localStorage.getItem("__redux__state__")
 	return persitedState ? JSON.parse(persitedState).users : DEFAULT_STATE
 })()
 
@@ -74,7 +74,7 @@ export const usersSlice = createSlice({
 		},
 		updateUser:(state, action:PayloadAction<UserWithId>)=>{
 			const updateUser = action.payload
-			const userIndex = state.findIndex((user)=> user.id ===updateUser
+			const userIndex = state.findIndex((user)=> user.id === updateUser
 		.id)
 			if (userIndex !==-1) {
 				state[userIndex]= updateUser

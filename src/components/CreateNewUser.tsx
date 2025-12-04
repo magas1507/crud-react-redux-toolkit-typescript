@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
+import { CheckCircle2, XCircle } from "lucide-react"
 import { useState } from "react";
 import { useUserActions } from '../hooks/useUserActions'
 import type React from "react";
@@ -35,13 +36,13 @@ export function CreateNewUser() {
 
 
   return (
-    <Card className="mt-4">
+    <Card className="w-full max-w-md mx-auto mt-8">
       <CardHeader>
-        <CardTitle>Create new user</CardTitle>
+        <CardTitle className="text-2xl">Crear nuevo usuário</CardTitle>
       </CardHeader>
 
       <CardContent>
-        <form onSubmit={handleSubmit} className="space-y-4">
+        <form onSubmit={handleSubmit} className="space-y-6">
           <Input
             name="name"
             placeholder="Name"
@@ -70,15 +71,17 @@ export function CreateNewUser() {
             </Button>
 
             {result === "ok" && (
-              <Badge className="bg-green-600 text-white">
-                guardado correctamente
-              </Badge>
+              <div className="flex items-center gap-2 text-green-600 animate-in slide-in-from-right">
+                <CheckCircle2 className="h-5 w-5" />
+                <span className="font-medium">Usuário creado!</span>
+              </div>
             )}
 
             {result === "ko" && (
-              <Badge className="bg-red-600 text-white">
-                error en los campos
-              </Badge>
+              <div className="flex items-center gap-2 text-red-600 animate-in slide-in-from-right">s
+                <XCircle className="h-5 w-5" />
+                <span className="font-medium">Llena todos os campos!</span>
+              </div>
             )}
           </div>
         </form>
